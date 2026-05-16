@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Main
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for holding in holdings %}
+                <tr>
+                    <td>{{holding.symbol}}</td>
+                    <td>{{holding.name}}</td>
+                    <td>{{holding.shares}}</td>
+                    <td>{{holding.price | usd}}</td>
+                    <td>{{holding.total | usd}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h4>Cash: {{ cash | usd }}</h4>
+    <h4>Total (stocks + cash): {{ grand_total | usd }}</h4>
+{% endblock %}
